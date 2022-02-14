@@ -1,0 +1,1 @@
+!function(){"use strict";var t=window.wp.element;const{registerBlockType:e}=wp.blocks;e("namespace/guestpost-form",{title:"Guest Post Form",description:"Block to show Guest Post form",icon:"edit-page",category:"widgets",attributes:{},edit:()=>(0,t.createElement)("div",null,"[guest_post_submit]"),save:()=>(0,t.createElement)("div",null,"[guest_post_submit]")})}();

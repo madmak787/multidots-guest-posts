@@ -1,0 +1,14 @@
+{
+  "name": "guest-post-submission",
+  "version": "1.0.0",
+  "description": "Guest Post Submission by MultiDots",
+  "homepage": "https://khanamir.me/homeowrk/multidots",
+  "devDependencies": {
+    "@wordpress/scripts": "21.0.1"
+  },
+  "scripts": {
+    "build:scripts": "wp-scripts build",
+    "build": "run-p \"build:*\"",
+    "start-build": "wp-scripts start"
+  }
+}
