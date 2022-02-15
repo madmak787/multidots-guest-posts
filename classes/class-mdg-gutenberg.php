@@ -39,7 +39,12 @@ if ( ! class_exists( 'MDG_Gutenberg' ) && defined( 'ABSPATH' ) ) {
 				'madmak/guestpost-form',
 				array(
 					'editor_script' => 'mdg-gutenberg-blocks',
-
+				)
+			);
+			register_block_type(
+				'madmak/guestpost',
+				array(
+					'editor_script' => 'mdg-gutenberg-blocks',
 				)
 			);
 		}

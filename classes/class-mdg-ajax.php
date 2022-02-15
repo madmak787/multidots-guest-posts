@@ -29,6 +29,8 @@ if ( ! class_exists( 'MDG_Ajax' ) && defined( 'ABSPATH' ) ) {
 		public function set_filters() {
 			add_action( 'wp_ajax_submit_guest_post', array( $this, 'submit_guest_post' ) );
 			add_action( 'wp_ajax_nopriv_submit_guest_post', array( $this, 'please_login' ) );
+
+			add_action( 'wp_ajax_approve_guest_post', array( $this, 'approve_guest_post' ) );
 		}
 
 		/**
@@ -102,6 +104,30 @@ if ( ! class_exists( 'MDG_Ajax' ) && defined( 'ABSPATH' ) ) {
 			$return = array(
 				'success' => false,
 				'message' => 'You must log in to like',
+			);
+			echo wp_json_encode( $return );
+			exit;
+		}
+
+		/**
+		 * Approve guest post
+		 */
+		public function approve_guest_post() {
+			$return = array(
+				'success' => false,
+				'message' => 'An error occurred.',
+			);
+			// Nonce check for an extra layer of security, the function will exit if it fails.
+			if ( ! wp_verify_nonce( wp_unslash( $_POST['nonce'] ), 'approve_guest_post' ) ) { // phpcs:ignore
+				$return['message'] = 'Nonce not verified.';
+				echo wp_json_encode( $return );
+				exit;
+			}
+			$post_id = isset( $_POST['post_id'] ) ? sanitize_text_field( wp_unslash( $_POST['post_id'] ) ) : '';
+			wp_publish_post( $post_id );
+			$return = array(
+				'success' => true,
+				'message' => 'Post published.',
 			);
 			echo wp_json_encode( $return );
 			exit;

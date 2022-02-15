@@ -30,6 +30,7 @@ if ( ! class_exists( 'MDG_Shortcodes' ) && defined( 'ABSPATH' ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'shortcode_register_scripts' ) );
 
 			add_shortcode( 'guest_post_submit', array( $this, 'guest_post_submit' ), 10, 0 );
+			add_shortcode( 'guest_posts', array( $this, 'guest_posts' ), 10, 0 );
 		}
 
 		/**
@@ -53,6 +54,39 @@ if ( ! class_exists( 'MDG_Shortcodes' ) && defined( 'ABSPATH' ) ) {
 			include MDG_PLUGIN_PATH . 'templates/frontend/form.php';
 			$html = ob_get_contents();
 			ob_end_clean();
+			return $html;
+		}
+
+		/**
+		 * Shortcode to show guest posts list
+		 */
+		public function guest_posts() {
+			wp_enqueue_style( 'mdg-style' );
+			wp_enqueue_script( 'mdg-script' );
+
+			$guest_posts = array();
+			$args        = array(
+				'post_type'      => 'guest_post',
+				'post_status'    => 'draft',
+				'posts_per_page' => 10,
+				'paged'          => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
+			);
+
+			$the_query = new WP_Query( $args );
+			if ( $the_query->have_posts() ) :
+				while ( $the_query->have_posts() ) :
+					$the_query->the_post();
+					global $post;
+					$guest_posts[ get_the_ID() ] = $post;
+				endwhile;
+			endif;
+
+			ob_start();
+			include MDG_PLUGIN_PATH . 'templates/frontend/list.php';
+			$html = ob_get_contents();
+			ob_end_clean();
+
+			wp_reset_postdata();
 			return $html;
 		}
 

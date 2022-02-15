@@ -1,0 +1,102 @@
+.wp-block-button__link {
+	color: #fff;
+	background-color: #32373c;
+	border-radius: 9999px;
+	box-shadow: none;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 1.125em;
+	padding: calc(.667em + 2px) calc(1.333em + 2px);
+	text-align: center;
+	text-decoration: none;
+	word-break: break-word;
+	box-sizing: border-box;
+}
+.wp-block-button__link {
+	background-color: var(--wp--preset--color--primary);
+	border-radius: 0;
+	color: var(--wp--preset--color--background);
+	font-size: var(--wp--preset--font-size--medium);
+    position: relative;
+}
+.wp-block-button__link img {
+	position: absolute;
+	width: 22px;
+	top: 33%;
+	right: 40%;
+    display: none;
+}
+.wp-block-button__link.disabled img {
+    display: inline-block;
+}
+.guest-post-form {
+	border-radius: 5px;
+	box-shadow: 0 0 5px 1px #ccc6;
+	padding: 25px;
+}
+.guest-post-form label {
+	width: 22%;
+	display: inline-block;
+}
+.guest-post-form input, .guest-post-form select, .guest-post-form textarea {
+	width: 73%;
+	padding: 10px;
+	vertical-align: middle;
+}
+.guest-post-form select {
+	width: 77%;
+}
+.guest-post-description textarea {
+	height: 500px;
+}
+.guest-post-excerpt textarea {
+	height: 200px;
+}
+.guest-post-form .wp-block-button__link {
+	width: 100%;
+}
+.guest-post-form .wp-block-button__link img {
+	width: 25px;
+	position: absolute;
+    display: none;
+}
+.guest-post-form .wp-block-button__link:disabled img {
+    display: inline-block;
+}
+
+.guest-posts-list {
+	border-collapse: collapse;
+	width: 100%;
+}
+.guest-posts-list th, .guest-posts-list td {
+	border: 1px solid #eee;
+	padding: 5px 15px;
+	text-align: center;
+}
+.guest-posts-list img {
+	max-width: 50px;
+	max-height: 50px;
+}
+.pagination {
+	text-align: center;
+	margin: 25px auto;
+    font-size: 0;
+}
+.pagination > * {
+	display: inline-block;
+	padding: 5px 15px;
+	background-color: #efefef;
+	font-size: 16px;
+	text-decoration: none;
+	margin: 0 1px 0 0;
+    cursor: not-allowed;
+}
+.pagination a {
+	background-color: #1a4548;
+	color: #fff;
+	cursor: pointer;
+}
+.pagination a:hover {
+	background-color: #1a4548;
+    opacity: 0.90;
+}
