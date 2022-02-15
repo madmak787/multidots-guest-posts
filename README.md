@@ -30,6 +30,7 @@ List: https://khanamir.me/homework/multidots/guest-post-lists/
 WP-Admin: https://khanamir.me/homework/multidots/wp-admin/
 
 **Username:** multidots **Password:** $Multidots123!@#
+
 **Author Username:** author **Author Password:** $Author123!@#
 
 ## Shortcodes
