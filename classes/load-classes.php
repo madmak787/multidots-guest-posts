@@ -16,3 +16,4 @@
 require_once 'class-mdg-post-types.php';
 require_once 'class-mdg-shortcodes.php';
 require_once 'class-mdg-gutenberg.php';
+require_once 'class-mdg-ajax.php';

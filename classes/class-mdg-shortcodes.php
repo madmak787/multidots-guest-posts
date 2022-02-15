@@ -37,7 +37,9 @@ if ( ! class_exists( 'MDG_Shortcodes' ) && defined( 'ABSPATH' ) ) {
 		 */
 		public function shortcode_register_scripts() {
 			wp_register_style( 'mdg-style', plugins_url( '../assets/css/style.css', __FILE__ ), array(), time(), 'all' );
+			wp_enqueue_script( 'jquery' );
 			wp_register_script( 'mdg-script', plugins_url( '../assets/js/script.js', __FILE__ ), array(), time(), 'all' );
+			wp_add_inline_script( 'mdg-script', "var ajaxurl='" . admin_url( 'admin-ajax.php' ) . "';" );
 		}
 
 		/**

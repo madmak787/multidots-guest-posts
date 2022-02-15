@@ -22,7 +22,7 @@ $post_types = get_post_types( $args, $output, $operator );
 ?>
 <div id="guestpost" class="guest-post-wrapper">
 	<h3 class="guest-post-title">Submit Post</h3>
-	<form action="<?php echo esc_url( admin_url( 'posts.php' ) ); ?>" method="post" class="guest-post-form" novalidate="">
+	<form action="<?php echo esc_url( admin_url( 'posts.php' ) ); ?>" method="post" class="guest-post-form" enctype="multipart/form-data">
 		<p class="guest-post-title">
 			<label for="title">Title</label>
 			<input name="title" type="text" required="" />
@@ -46,8 +46,14 @@ $post_types = get_post_types( $args, $output, $operator );
 			<label for="excerpt">Excerpt</label>
 			<textarea name="excerpt"></textarea>
 		</p>
+		<p class="guest-post-image">
+			<label for="image">Featured Image</label>
+			<input type="file" name="main_image" id="main_image"  multiple="false" value="" accept=".png, .jpg, .jpeg, .gif"/>
+		</p>
 		<p class="form-submit">
-			<input name="submit" type="button" class="submit wp-block-button__link" value="Submit For Approval">
+			<input name="action" type="hidden" value="submit_guest_post">
+			<input name="nonce" type="hidden" value="<?php echo esc_attr( wp_create_nonce( 'guest_post' ) ); ?>">
+			<input name="submit" type="submit" class="submit wp-block-button__link" value="Submit For Approval">
 		</p>
 	</form>
 </div>
