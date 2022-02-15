@@ -29,7 +29,14 @@ List: https://khanamir.me/homework/multidots/guest-post-lists/
 
 WP-Admin: https://khanamir.me/homework/multidots/wp-admin/
 
-U: multidots P: $Multidots123!@#
+**Username:** multidots **Password:** $Multidots123!@#
+## Shortcodes
+
+**Form:** [guest_post_submit]
+
+**List:** [guest_posts]
+
+
 ## Authors
 
 - [@madmak787](https://www.github.com/madmak787/)
