@@ -41,7 +41,7 @@ if ( ! class_exists( 'MDG_Post_Types' ) && defined( 'ABSPATH' ) ) {
 					'labels'     => array( 'name' => 'Guest Posts' ),
 					'public'     => true,
 					'menu_icon'  => 'dashicons-welcome-write-blog',
-					'supports'   => array( 'title', 'editor', 'thumbnail', 'comments' ),
+					'supports'   => array( 'title', 'editor', 'excerpt', 'thumbnail', 'comments' ),
 					'taxonomies' => array( 'category' ),
 				)
 			);

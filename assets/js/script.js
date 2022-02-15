@@ -12,6 +12,8 @@ $j(document).ready(function() {
             contentType: false,
             success: function(data) {
                 frm.find('.wp-block-button__link').prop('disabled',false);
+                frm.find('.wp-block-button__link').after('<p style="color:red">Submitted successfully.</p>');
+                document.getElementById("#guestpost-form").reset();
             },
             error: function(data) {
                 frm.find('.wp-block-button__link').prop('disabled',false);

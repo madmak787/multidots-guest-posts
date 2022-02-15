@@ -21,7 +21,7 @@ $post_types = get_post_types( $args, $output, $operator );
 
 ?>
 <div id="guestpost" class="guest-post-wrapper">
-	<form action="<?php echo esc_url( admin_url( 'posts.php' ) ); ?>" method="post" class="guest-post-form" enctype="multipart/form-data">
+	<form id="guestpost-form" action="<?php echo esc_url( admin_url( 'posts.php' ) ); ?>" method="post" class="guest-post-form" enctype="multipart/form-data">
 		<p class="guest-post-title">
 			<label for="title">Title</label>
 			<input name="title" type="text" required="required" />
