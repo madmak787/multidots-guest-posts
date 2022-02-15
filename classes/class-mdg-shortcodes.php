@@ -50,10 +50,19 @@ if ( ! class_exists( 'MDG_Shortcodes' ) && defined( 'ABSPATH' ) ) {
 			wp_enqueue_style( 'mdg-style' );
 			wp_enqueue_script( 'mdg-script' );
 
-			ob_start();
-			include MDG_PLUGIN_PATH . 'templates/frontend/form.php';
-			$html = ob_get_contents();
-			ob_end_clean();
+			if ( is_user_logged_in() ) {
+				if ( current_user_can( 'administrator' ) || current_user_can( 'author' ) ) {
+					ob_start();
+					include MDG_PLUGIN_PATH . 'templates/frontend/form.php';
+					$html = ob_get_contents();
+					ob_end_clean();
+				} else {
+					$html = '<p>Please login as author or administrator.</p>';
+				}
+			} else {
+				$html = '<p>Please <a href="' . wp_login_url( get_permalink() ) . '">login</a> to submit the post.</p>';
+			}
+
 			return $html;
 		}
 
@@ -64,29 +73,37 @@ if ( ! class_exists( 'MDG_Shortcodes' ) && defined( 'ABSPATH' ) ) {
 			wp_enqueue_style( 'mdg-style' );
 			wp_enqueue_script( 'mdg-script' );
 
-			$guest_posts = array();
-			$args        = array(
-				'post_type'      => 'guest_post',
-				'post_status'    => 'draft',
-				'posts_per_page' => 10,
-				'paged'          => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
-			);
+			if ( is_user_logged_in() ) {
+				if ( current_user_can( 'administrator' ) || current_user_can( 'author' ) ) {
+					$guest_posts = array();
+					$args        = array(
+						'post_type'      => 'guest_post',
+						'post_status'    => 'draft',
+						'posts_per_page' => 10,
+						'paged'          => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
+					);
 
-			$the_query = new WP_Query( $args );
-			if ( $the_query->have_posts() ) :
-				while ( $the_query->have_posts() ) :
-					$the_query->the_post();
-					global $post;
-					$guest_posts[ get_the_ID() ] = $post;
-				endwhile;
-			endif;
+					$the_query = new WP_Query( $args );
+					if ( $the_query->have_posts() ) :
+						while ( $the_query->have_posts() ) :
+							$the_query->the_post();
+							global $post;
+							$guest_posts[ get_the_ID() ] = $post;
+						endwhile;
+					endif;
 
-			ob_start();
-			include MDG_PLUGIN_PATH . 'templates/frontend/list.php';
-			$html = ob_get_contents();
-			ob_end_clean();
+					ob_start();
+					include MDG_PLUGIN_PATH . 'templates/frontend/list.php';
+					$html = ob_get_contents();
+					ob_end_clean();
 
-			wp_reset_postdata();
+					wp_reset_postdata();
+				} else {
+					$html = '<p>Please login as author or administrator.</p>';
+				}
+			} else {
+				$html = '<p>Please <a href="' . wp_login_url( get_permalink() ) . '">login</a> to submit the post.</p>';
+			}
 			return $html;
 		}
 
